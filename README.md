@@ -113,16 +113,16 @@ python receive.py
 ---
 
 ## Người gửi
-![Người gửi](images/sender.png)
+![Người gửi](images/Sender.png)
 
 ## Người nhận
-![Người nhận](images/receiver.png)
+![Người nhận](Images/Receiver.png)
 
 ## Ví dụ phản hồi ACK
-![ACK](images/ack.png)
+![ACK](images/ACK.png)
 
 ## Ví dụ phản hồi NACK
-![NACK](images/nack.png)
+![NACK](images/NACK.png)
 
 
 ## 💡 Mục tiêu
