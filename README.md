@@ -118,7 +118,7 @@ python receive.py
 ![Receiver](Images/Receiver.png)
 
 ## Ví dụ phản hồi ACK
-![ACK](Images/ACK.png)
+![ACK](Images/ACK.jpg))
 
 ## Ví dụ phản hồi NACK
 ![NACK](Images/NACK.png)
