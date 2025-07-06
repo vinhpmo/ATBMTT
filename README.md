@@ -22,6 +22,32 @@ Hệ thống mô phỏng theo mô hình thực tế khi một tổ chức cần 
 | Quản lý khóa | Bộ khóa công khai/riêng tư (PKI) |
 
 ---
+## Luồng xử lí
+
+### 1. Handshake
+- Người gửi (Sender) gửi thông điệp: "Hello!"
+- Người nhận (Receiver) xác nhận bằng thông điệp "Ready!"
+
+### 2. Ký số và trao khoá
+- Người gửi ký metadata {filename | timestamp | filetype} bằng RSA + SHA-512.
+- Khóa phiên (session key) dùng cho AES được mã hóa bằng khóa công khai của người nhận.
+
+### 3. Nén, mã khoá và kiểm tra toàn vẹn
+- File finance.txt được nén bằng zlib.
+- Mã hóa dữ liệu nén bằng AES-GCM.
+- Sinh mã hash toàn vẹn bằng SHA-512 trên nonce, ciphertext và tag.
+- Gói tin bao gồm:
+```json
+{
+  "nonce": "<Base64>",
+  "cipher": "<Base64>",
+  "tag": "<Base64>",
+  "hash": "<SHA-512 hex>",
+  "sig": "<Base64 chữ ký số>",
+  "enc_key": "<Base64 khóa phiên mã hóa bằng RSA>",
+  "metadata": "Input/finance.txt|<timestamp>|text/plain"
+}
+```
 
 ## 🚦 Quy trình hoạt động
 
@@ -64,9 +90,11 @@ Gói JSON gửi bao gồm:
 ## ▶️ Hướng dẫn sử dụng
 
 ### 1. Cài đặt môi trường Python
+Yêu cầu Python 3.10+
+  Cài đặt thư viện cần thiết:
 
-```bash
-pip install pycryptodome
+  ```bash
+python -m pip install pycryptodome
 ```
 
 ### 2. Tạo khóa RSA
@@ -98,6 +126,24 @@ python receive.py
 ![Receiver](Images/Receiver.jpg)
 
 ---
+### 5. Thông báo phản hồi khi nhận file hoặc lỗi timestamp
+
+| Trường hợp | Thông báo trên dòng lệnh | Hành động yêu cầu người dùng |
+| ---------- | ------------------------ | ---------------------------- |
+| Handshake thành công | 📥 Ready! | Tiếp tục nhận file |
+| Handshake sai | ❌ Handshake sai, từ chối kết nối. Gửi NACK. | Chạy lại và nhập đúng "Hello!" |
+| Hash mismatch | ❌ Lỗi toàn vẹn! (hash mismatch). Gửi NACK. | Kiểm tra file và thử lại |
+| Chữ ký không hợp lệ | ❌ Chữ ký không hợp lệ! Gửi NACK. | Kiểm tra khóa công khai |
+| Timestamp không hợp lệ (lỗi thời gian) | ⚠️ Cảnh báo: Gói tin có thể bị tấn công replay. Gửi NACK. | Chạy lại, kiểm tra đồng hồ hệ thống |
+| Giải mã thành công | ✅ Đã giải mã và lưu file. Gửi ACK. | Không cần hành động thêm |
+| Tag AES không khớp (sai tag) | ❌ Xác thực tag thất bại! Gửi NACK. | Kiểm tra khóa phiên đúng sai |
+
+👉 Khi có lỗi timestamp, bạn sẽ thấy thông báo:
+
+ ```lesh
+⚠️ Cảnh báo: Gói tin có thể bị tấn công replay (timestamp không hợp lệ)
+❌ Integrity failed. Gửi NACK về cho Sender.
+```
 
 ## 🛠 Xử lý lỗi
 
@@ -118,18 +164,13 @@ python receive.py
 ![NACK](Images/Nack.jpg)
 
 
-## 💡 Mục tiêu
-
-- An toàn trong truyền dữ liệu nội bộ y tế
-- Tránh thất thoát dữ liệu nhạy cảm
-- Giảm dung lượng truyền nhờ nén
-- Bảo đảm tính toàn vẹn và xác thực
 
 ---
 
 ## 👨‍💻 Tác giả
-
+- Trường: Đại học Đại Nam  
+- Lớp: Công nghệ thông tin 16-04
 - Nguyễn Thế Vinh  
 - Nhóm 10  
 - Khoa: Công nghệ Thông tin  
-- Trường: Đại học Đại Nam  
+
