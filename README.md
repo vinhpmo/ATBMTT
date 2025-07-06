@@ -85,7 +85,7 @@ python send.py
 > Đảm bảo file cần gửi nằm trong thư mục `data/input/`.
 
 #### Ảnh minh họa vai trò Người gửi:
-![Sender](b7bb31a3-986d-4a0e-869f-bb08c635f9d0.png)
+![Sender](Images/Sender.jpg)
 
 ### 4. Nhận file (vai trò người nhận)
 
@@ -96,7 +96,7 @@ python receive.py
 > File giải mã được lưu ở `data/output/`.
 
 #### Ảnh minh họa vai trò Người nhận:
-![Receiver](34482f58-7c72-4346-a52f-3c80b57f1a4a.png)
+![Receiver](Images/Receiver.jpg)
 
 ---
 
@@ -111,17 +111,12 @@ python receive.py
 | Thành công | File lưu thành công, phản hồi "ACK" |
 
 ---
-## Người gửi
-![Sender](Images/Sender.png)
-
-## Người nhận
-![Receiver](Images/Receiver.png)
 
 ## Ví dụ phản hồi ACK
 ![ACK](Images/ACK.jpg))
 
 ## Ví dụ phản hồi NACK
-![NACK](Images/NACK.png)
+![NACK](Images/Nack.jpg)
 
 
 ## 💡 Mục tiêu
