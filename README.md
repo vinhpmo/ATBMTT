@@ -111,18 +111,17 @@ python receive.py
 | Thành công | File lưu thành công, phản hồi "ACK" |
 
 ---
-
 ## Người gửi
-![Người gửi](images/Sender.png)
+![Sender](Images/Sender.png)
 
 ## Người nhận
-![Người nhận](Images/Receiver.png)
+![Receiver](Images/Receiver.png)
 
 ## Ví dụ phản hồi ACK
-![ACK](images/ACK.png)
+![ACK](Images/ACK.png)
 
 ## Ví dụ phản hồi NACK
-![NACK](images/NACK.png)
+![NACK](Images/NACK.png)
 
 
 ## 💡 Mục tiêu
