@@ -4,10 +4,9 @@
 # Hệ thống chia sẻ file nội bộ an toàn – Đề tài nhóm 10: Truyền dữ liệu y tế có bảo mật
 
 ## 🌐 Giới thiệu chung
+Đây là một hệ thống bảo mật cho quá trình truyền file báo cáo tài chính giữa hai bên thông qua mạng Internet. Nội dung file được nén để giảm kích thước, sau đó mã hóa bằng thuật toán AES-GCM đảm bảo tính bảo mật và toàn vẹn dữ liệu. Danh tính của người gửi và người nhận được xác thực bằng chữ ký số RSA 1024-bit, đồng thời sử dụng hàm băm SHA-512 để kiểm tra toàn vẹn nội dung file.
 
-Hệ thống này hỗ trợ truyền file dữ liệu y tế giữa các bộ phận trong cùng một bệnh viện một cách **bảo mật – chính xác – toàn vẹn**. File sẽ được nén, mã hóa, và xác thực trước khi gửi qua mạng nội bộ nhằm đảm bảo **không rò rỉ dữ liệu nhạy cảm**.
-
-Mô hình thích hợp cho bệnh viện, phòng khám hay tổ chức y tế yêu cầu chia sẻ dữ liệu bệnh án, xét nghiệm, kết quả chẩn đoán hình ảnh giữa các bộ phận/khoa.
+Hệ thống mô phỏng theo mô hình thực tế khi một tổ chức cần gửi file dữ liệu tài chính quan trọng qua mạng với yêu cầu đảm bảo bí mật – toàn vẹn – xác thực trong toàn bộ quá trình truyền tải
 
 ---
 
