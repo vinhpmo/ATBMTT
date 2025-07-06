@@ -1,5 +1,5 @@
 
-![Đại Nam](dn.png)
+![Đại Nam](Images/dn.jpg)
 
 # Hệ thống chia sẻ file nội bộ an toàn – Đề tài nhóm 10: Truyền dữ liệu y tế có bảo mật
 
